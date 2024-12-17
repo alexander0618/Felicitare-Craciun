@@ -3,38 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Local Video Player</title>
+    <title>Christmas Postcard</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
+            min-height: 100vh;
         }
-        .video-container {
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            padding: 20px;
+
+        .card-container {
             text-align: center;
+            padding: 20px;
+            background: #1c1c1c;
+            border: 2px solid #7ef29d;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(126, 242, 157, 0.8);
+            width: 90%;
+            max-width: 400px;
         }
+
+        h1 {
+            font-size: 2rem;
+            color: #7ef29d;
+            margin: 10px 0;
+        }
+
+        .greeting-text {
+            font-size: 1rem;
+            margin: 10px 0 20px;
+        }
+
         video {
             width: 100%;
-            max-width: 800px;
+            border: 2px solid #7ef29d;
             border-radius: 10px;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Decorative Snowflakes */
+        .snowflakes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .snowflake {
+            position: absolute;
+            background-color: #fff;
+            border-radius: 50%;
+            width: 5px;
+            height: 5px;
+            opacity: 0.7;
+            animation: snowfall linear infinite;
+        }
+
+        @keyframes snowfall {
+            0% {
+                transform: translateY(-100%);
+            }
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+
+        .snowflake:nth-child(odd) {
+            animation-duration: 8s;
+        }
+
+        .snowflake:nth-child(even) {
+            animation-duration: 10s;
         }
     </style>
 </head>
 <body>
-    <div class="video-container">
-        <h1>Craciun Fericit</h1>
+    <!-- Decorative Snowflakes -->
+    <div class="snowflakes">
+        <div class="snowflake" style="left: 5%; animation-delay: 0s;"></div>
+        <div class="snowflake" style="left: 20%; animation-delay: 2s;"></div>
+        <div class="snowflake" style="left: 40%; animation-delay: 4s;"></div>
+        <div class="snowflake" style="left: 60%; animation-delay: 1s;"></div>
+        <div class="snowflake" style="left: 80%; animation-delay: 3s;"></div>
+        <div class="snowflake" style="left: 90%; animation-delay: 5s;"></div>
+    </div>
+
+    <!-- Christmas Card Container -->
+    <div class="card-container">
+        <h1>❤ Merry Christmas ❤</h1>
+        <p class="greeting-text">A special video for someone really special. ✨</p>
         <video controls>
             <source src="Test.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
+        <div class="footer">Wishing you love, joy, and happiness this Christmas! ☃</div>
     </div>
 </body>
 </html>
