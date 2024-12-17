@@ -15,7 +15,8 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-        }Merry Christmas
+            overflow: hidden;
+        }
 
         .card-container {
             text-align: center;
@@ -26,9 +27,10 @@
             box-shadow: 0 0 15px rgba(126, 242, 157, 0.8);
             width: 90%;
             max-width: 400px;
+            z-index: 10;
         }
 
-        h1 {
+        h2 {
             font-size: 2rem;
             color: #7ef29d;
             margin: 10px 0;
@@ -51,56 +53,32 @@
             opacity: 0.8;
         }
 
-        /* Decorative Snowflakes */
-        .snowflakes {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-
+        /* Snowflake Animation */
         .snowflake {
-            position: absolute;Merry Christmas
+            position: fixed;
+            top: -10px;
             background-color: #fff;
             border-radius: 50%;
-            width: 5px;
-            height: 5px;
-            opacity: 0.7;
-            animation: snowfall linear infinite;
+            width: 8px;
+            height: 8px;
+            opacity: 0.8;
+            pointer-events: none;
+            animation: fall linear infinite;
         }
 
-        @keyframes snowfall {
+        @keyframes fall {
             0% {
-                transform: translateY(-100%);
+                transform: translateY(-10%);
+                opacity: 0.8;
             }
             100% {
                 transform: translateY(100vh);
+                opacity: 0;
             }
-        }
-
-        .snowflake:nth-child(odd) {
-            animation-duration: 8s;
-        }
-
-        .snowflake:nth-child(even) {
-            animation-duration: 10s;
         }
     </style>
 </head>
 <body>
-    <!-- Decorative Snowflakes -->
-    <div class="snowflakes">
-        <div class="snowflake" style="left: 5%; animation-delay: 0s;"></div>
-        <div class="snowflake" style="left: 20%; animation-delay: 2s;"></div>
-        <div class="snowflake" style="left: 40%; animation-delay: 4s;"></div>
-        <div class="snowflake" style="left: 60%; animation-delay: 1s;"></div>
-        <div class="snowflake" style="left: 80%; animation-delay: 3s;"></div>
-        <div class="snowflake" style="left: 90%; animation-delay: 5s;"></div>
-    </div>
-
     <!-- Christmas Card Container -->
     <div class="card-container">
         <h2>❤ Crăciun Fericit ❤</h2>
@@ -111,5 +89,32 @@
         </video>
         <div class="footer">Wishing you love, joy, and happiness this Christmas! ☃</div>
     </div>
+
+    <!-- Snowflake Script -->
+    <script>
+        function createSnowflakes() {
+            const body = document.body;
+            const numberOfFlakes = 50;
+
+            for (let i = 0; i < numberOfFlakes; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.classList.add('snowflake');
+                snowflake.style.left = `${Math.random() * 100}vw`;
+                snowflake.style.animationDuration = `${Math.random() * 3 + 2}s`; // Duration between 2s and 5s
+                snowflake.style.width = snowflake.style.height = `${Math.random() * 5 + 5}px`; // Random size between 5px and 10px
+                snowflake.style.animationDelay = `${Math.random() * 5}s`;
+
+                body.appendChild(snowflake);
+
+                // Remove snowflake after it finishes falling
+                setTimeout(() => {
+                    snowflake.remove();
+                }, 5000);
+            }
+        }
+
+        setInterval(createSnowflakes, 500); // Generate new flakes every 500ms
+        createSnowflakes();
+    </script>
 </body>
 </html>
